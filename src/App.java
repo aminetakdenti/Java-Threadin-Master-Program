@@ -10,8 +10,6 @@ class App {
   static int loop;
 
   public static void main(String[] args) throws InterruptedException {
-    // System.out.println("\u001B[31m" + "Hello World!!!" + "\u001B[0m");
-
     // Init the array
     System.out.println("Enter the size of the matrix size: ");
     // Line and column
