@@ -40,9 +40,8 @@ public class Runner extends Thread {
   // Function to move the runner
   public int runnerMove() throws InterruptedException {
     String direction = "";
-    boolean test = false;
     int i = 0;
-    while (!test) {
+    while (true) {
       i = (int) (Math.random() * 4 + 1);
       if (i == 1 && position[0] > 0) {
         position[0] -= 1;
@@ -60,7 +59,7 @@ public class Runner extends Thread {
     }
 
     direction = direction(i);
-
+    // Print the runner's name, direction and position
     System.out.println(
       this.getName() +
       " Runner moved " +
@@ -68,7 +67,7 @@ public class Runner extends Thread {
       " to " +
       Arrays.toString(position)
     );
-    // Thread.sleep(1000);
+
     return i;
   }
 }

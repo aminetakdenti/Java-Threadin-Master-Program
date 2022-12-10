@@ -7,8 +7,11 @@ class App {
   static int threadNumber;
   static int line;
   static int column;
+  static int loop;
 
   public static void main(String[] args) throws InterruptedException {
+    // System.out.println("\u001B[31m" + "Hello World!!!" + "\u001B[0m");
+
     // Init the array
     System.out.println("Enter the size of the matrix size: ");
     // Line and column
@@ -25,14 +28,28 @@ class App {
       if (threadNumber <= (line * column)) {
         break;
       } else {
-        System.out.println("The number of threads is too big!!!");
+        System.out.println(
+          "\u001B[31m" + "The number of threads is too big!!!" + "\u001B[0m"
+        );
+      }
+    }
+
+    // how much time you want to loop
+    while (true) {
+      System.out.println("Enter the number of loops: ");
+      loop = Integer.parseInt(System.console().readLine());
+      if (loop > 0) {
+        break;
+      } else {
+        System.out.println(
+          "\u001B[31m" + "you must enter number > 0!!" + "\u001B[0m"
+        );
       }
     }
 
     // Create the array of runners
     Runner[] runners = new Runner[threadNumber];
     for (int i = 0; i < threadNumber; i++) {
-      System.out.println("Thread " + (i + 1) + " is created");
       runners[i] = new Runner(threadNumber);
     }
 
@@ -40,7 +57,6 @@ class App {
 
     // Set the runners in the array
     for (int i = 0; i < threadNumber; i++) {
-      System.out.println("Thread " + (i + 1) + " is setted");
       checkThread(runners[i], arr, "t" + (i + 1));
     }
 
@@ -50,7 +66,7 @@ class App {
     arr.printArr();
 
     // Move the runners
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < loop; i++) {
       arr.clearArr();
       for (int j = 0; j < threadNumber; j++) {
         moveThread(runners[j], arr, "t" + (j + 1));
@@ -83,6 +99,9 @@ class App {
       if (arr.setArr(thread.position[0], thread.position[1], i) == 1) {
         break;
       }
+      System.out.println(
+        "\u001B[31m" + "That position is already taken!!!" + "\u001B[0m"
+      );
     }
     semMove.release();
   }
