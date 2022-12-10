@@ -4,23 +4,23 @@ public class Runner extends Thread {
   int[] position;
 
   // Constructor
-  Runner() {
-    randomPosition();
+  Runner(int n) {
+    randomPosition(n);
   }
 
   // Get random position
-  public void randomPosition() {
-    position = random();
+  public void randomPosition(int n) {
+    position = random(n);
   }
 
   @Override
   public void run() {}
 
   // Function to generate random position
-  public int[] random() {
+  public int[] random(int n) {
     int[] arr = new int[2];
-    int i = (int) (Math.random() * 2);
-    int j = (int) (Math.random() * 2);
+    int i = (int) (Math.random() * (n - 1));
+    int j = (int) (Math.random() * (n - 1));
     arr[0] = i;
     arr[1] = j;
     return arr;

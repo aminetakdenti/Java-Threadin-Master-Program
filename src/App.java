@@ -33,7 +33,7 @@ class App {
     Runner[] runners = new Runner[threadNumber];
     for (int i = 0; i < threadNumber; i++) {
       System.out.println("Thread " + (i + 1) + " is created");
-      runners[i] = new Runner();
+      runners[i] = new Runner(threadNumber);
     }
 
     System.out.println("#################");
@@ -45,8 +45,10 @@ class App {
     }
 
     System.out.println("#################");
+
     // Print the array
     arr.printArr();
+
     // Move the runners
     for (int i = 0; i < 5; i++) {
       arr.clearArr();
@@ -62,12 +64,11 @@ class App {
   public static void checkThread(Runner thread, Arr arr, String i)
     throws InterruptedException {
     semInit.acquire();
-    boolean condition = false;
-    while (!condition) {
+    while (true) {
       if (arr.setArr(thread.position[0], thread.position[1], i) == 1) {
-        condition = true;
+        break;
       } else {
-        thread.randomPosition();
+        thread.randomPosition(threadNumber);
       }
     }
     semInit.release();
@@ -77,7 +78,6 @@ class App {
   public static void moveThread(Runner thread, Arr arr, String i)
     throws InterruptedException {
     semMove.acquire();
-    // boolean move = false;
     while (true) {
       thread.runnerMove();
       if (arr.setArr(thread.position[0], thread.position[1], i) == 1) {
