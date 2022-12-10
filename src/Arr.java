@@ -1,16 +1,9 @@
-import java.util.Arrays;
 import java.util.concurrent.Semaphore;
 
 public class Arr {
   int line, column;
   private String[][] arr;
   Semaphore sem = new Semaphore(1);
-
-  // Constructor
-  // public Arr(int n) {
-  //   arr = new String[n][n];
-  //   initArr();
-  // }
 
   public Arr(int n, int m) {
     line = n;
