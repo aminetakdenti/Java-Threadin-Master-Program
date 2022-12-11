@@ -22,7 +22,7 @@ class App {
     while (true) {
       System.out.println("Enter the number of threads: ");
       threadNumber = Integer.parseInt(System.console().readLine());
-      if (threadNumber <= (line * column)) {
+      if (threadNumber < (line * column)) {
         break;
       } else {
         System.out.println(
@@ -47,7 +47,8 @@ class App {
     // Create the array of runners
     Runner[] runners = new Runner[threadNumber];
     for (int i = 0; i < threadNumber; i++) {
-      runners[i] = new Runner(threadNumber);
+      runners[i] = new Runner(line, column);
+      System.out.println("Thread " + (i + 1) + " created");
     }
 
     System.out.println("#################");
@@ -81,7 +82,7 @@ class App {
       if (arr.setArr(thread.position[0], thread.position[1], i) == 1) {
         break;
       } else {
-        thread.randomPosition(threadNumber);
+        thread.randomPosition(line, column);
       }
     }
     semInit.release();
