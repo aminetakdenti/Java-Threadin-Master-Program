@@ -38,7 +38,7 @@ public class Runner extends Thread {
   }
 
   // Function to move the runner
-  public int runnerMove() throws InterruptedException {
+  public void runnerMove() throws InterruptedException {
     int i = 0;
     while (true) {
       i = (int) (Math.random() * 4 + 1);
@@ -65,7 +65,5 @@ public class Runner extends Thread {
       " to " +
       Arrays.toString(position)
     );
-
-    return i;
   }
 }
